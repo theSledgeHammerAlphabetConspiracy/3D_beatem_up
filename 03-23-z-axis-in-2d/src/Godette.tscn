@@ -1,10 +1,35 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/Godette.gd" type="Script" id=1]
 [ext_resource path="res://assets/godette_pawn.png" type="Texture" id=2]
+[ext_resource path="res://statemachine/motion/on_ground/move.gd" type="Script" id=3]
+[ext_resource path="res://statemachine/motion/on_ground/JumpStart.gd" type="Script" id=4]
+[ext_resource path="res://statemachine/motion/in_air/jump.gd" type="Script" id=5]
+[ext_resource path="res://statemachine/motion/on_ground/JumpLand.gd" type="Script" id=6]
+[ext_resource path="res://statemachine/motion/on_ground/idle.gd" type="Script" id=7]
+[ext_resource path="res://statemachine/player_state_machine.gd" type="Script" id=8]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.69188, 0.640016, 0.372855 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "idle"
+
+[sub_resource type="Animation" id=3]
+resource_name = "jump"
+
+[sub_resource type="Animation" id=4]
+resource_name = "jumpland"
+length = 0.1
+step = 0.0166667
+
+[sub_resource type="Animation" id=5]
+resource_name = "jumpstart"
+length = 0.0833333
+step = 0.0166667
+
+[sub_resource type="Animation" id=6]
+resource_name = "walk"
 
 [node name="Godette" type="KinematicBody"]
 script = ExtResource( 1 )
@@ -13,17 +38,41 @@ script = ExtResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.577753, -0.38216 )
 shape = SubResource( 1 )
 
-[node name="RotationOffset" type="Position3D" parent="."]
+[node name="BodyPivot" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0 )
 
-[node name="Sprite3D" type="Sprite3D" parent="RotationOffset"]
+[node name="Sprite3D" type="Sprite3D" parent="BodyPivot"]
 transform = Transform( 0.4, -1.11759e-08, 7.45058e-08, -1.86844e-08, 0.4, -4.47035e-08, 1.93237e-08, 5.96046e-08, 0.4, 0, 0.804995, 1.19209e-07 )
 alpha_cut = 2
 texture = ExtResource( 2 )
 
-[node name="Camera" type="Camera" parent="RotationOffset/Sprite3D"]
-transform = Transform( 2.5, 2.38419e-07, -2.38419e-07, -5.96046e-08, 2.5, -1.66893e-06, 0, 1.37091e-06, 2.5, 5.48363e-06, -3.35225, 33.8776 )
-projection = 1
-current = true
-size = 10.0
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 8 )
+START_STATE = NodePath("Idle")
 
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource( 7 )
+
+[node name="Move" type="Node" parent="StateMachine"]
+script = ExtResource( 3 )
+
+[node name="JumpStart" type="Node" parent="StateMachine"]
+script = ExtResource( 4 )
+
+[node name="Jump" type="Node" parent="StateMachine"]
+script = ExtResource( 5 )
+
+[node name="JumpLand" type="Node" parent="StateMachine"]
+script = ExtResource( 6 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/idle = SubResource( 2 )
+anims/jump = SubResource( 3 )
+anims/jumpland = SubResource( 4 )
+anims/jumpstart = SubResource( 5 )
+anims/walk = SubResource( 6 )
+
+[node name="StateNameDisplayer" type="Label3D" parent="."]
+transform = Transform( 2, 0, 0, 0, 4, 0, 0, 0, 2, 0, 1.36837, 0 )
+modulate = Color( 0, 0, 0, 1 )
+text = "YOYOYOYOYOYO"

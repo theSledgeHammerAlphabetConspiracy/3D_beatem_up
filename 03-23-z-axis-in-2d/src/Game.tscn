@@ -17,14 +17,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 8 )
 
 [node name="Box" parent="." instance=ExtResource( 2 )]
 
-[node name="Godette" parent="." instance=ExtResource( 3 )]
-
-[node name="Sprite3D" parent="Godette/RotationOffset" index="0"]
-transform = Transform( 0.4, -1.11759e-08, 7.45058e-08, -1.86844e-08, 0.4, -5.96046e-08, 1.93237e-08, 5.96046e-08, 0.4, 0, 0.804995, 1.19209e-07 )
-
-[node name="Camera" parent="Godette/RotationOffset/Sprite3D" index="0"]
-transform = Transform( 2.5, 2.46231e-07, -5.86435e-07, -5.96047e-08, 2.5, -1.19209e-06, 1.84741e-13, 1.19209e-06, 2.5, 4.5546e-06, -3.35225, 37.8381 )
-
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.93302, 0.221763, 0.283365, -0.358723, 0.634864, 0.6843, -0.0281458, -0.740115, 0.671892, 10.7235, 4, 0 )
 light_indirect_energy = 0.0
@@ -35,5 +27,10 @@ shadow_bias = 0.01
 shadow_contact = 0.39
 directional_shadow_mode = 0
 
+[node name="Camera2" type="Camera" parent="."]
+transform = Transform( 1, 7.05528e-08, -4.83093e-08, -3.69459e-08, 0.866026, 0.5, 7.71134e-08, -0.5, 0.866026, 4.75499e-06, 6.31141, 12.0035 )
+projection = 1
+current = true
+size = 10.0
 
-[editable path="Godette"]
+[node name="Godette" parent="." instance=ExtResource( 3 )]
