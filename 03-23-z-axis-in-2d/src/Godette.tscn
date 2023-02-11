@@ -65,6 +65,14 @@ script = ExtResource( 5 )
 [node name="JumpLand" type="Node" parent="StateMachine"]
 script = ExtResource( 6 )
 
+[node name="Hitstop" type="Node" parent="StateMachine"]
+
+[node name="HitstunGr" type="Node" parent="StateMachine"]
+
+[node name="HitstunA" type="Node" parent="StateMachine"]
+
+[node name="Knockdown" type="Node" parent="StateMachine"]
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/idle = SubResource( 2 )
 anims/jump = SubResource( 3 )
