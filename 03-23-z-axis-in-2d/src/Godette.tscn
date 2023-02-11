@@ -147,16 +147,16 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.577753, -0.38216 )
 shape = SubResource( 1 )
 
 [node name="BodyPivot" type="Position3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0 )
+transform = Transform( 0.707107, 0, 0.707106, 0, 1, 0, -0.707107, 0, 0.707106, 0, 0, 0 )
+__meta__ = {
+"_editor_description_": "originally the boy pivot was Vector3 (-30,0,0)"
+}
 
 [node name="Sprite3D" type="Sprite3D" parent="BodyPivot"]
 transform = Transform( 0.4, -1.11759e-08, 7.45058e-08, -1.86844e-08, 0.4, -4.47035e-08, 1.93237e-08, 5.96046e-08, 0.4, 0, 0.804995, 1.19209e-07 )
 visible = false
 alpha_cut = 2
 texture = ExtResource( 2 )
-
-[node name="bioren" parent="BodyPivot" instance=ExtResource( 13 )]
-transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0 )
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 8 )
@@ -207,3 +207,8 @@ visible = false
 modulate = Color( 0, 0, 0, 1 )
 text = "YOYOYOYOYOYO"
 uppercase = true
+
+[node name="BodyPivot2" type="Position3D" parent="."]
+
+[node name="bioren" parent="BodyPivot2" instance=ExtResource( 13 )]
+transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0 )
