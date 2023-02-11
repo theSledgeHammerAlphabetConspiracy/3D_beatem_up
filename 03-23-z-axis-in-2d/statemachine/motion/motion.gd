@@ -29,15 +29,15 @@ func update_look_direction(direction):
 	if direction and owner.look_direction != direction:
 		owner.look_direction = direction
 		#print(owner.look_direction) #only called when actually changed
+		####this is for 3d models changing dir
 		owner.get_node('BodyPivot2').rotation.y = Vector2(owner.look_direction.y,owner.look_direction.x).angle()
 		
 	if not direction.x in [-1, 1]:
 		return
 	
-	#good for sprites in 3D
+	######good for sprites in 3D
 	#owner.get_node("BodyPivot").set_scale(Vector3(direction.x, 1,1))
 	
-	#owner.get_node("APivot").set_scale(Vector2(direction.x, 1))
 
 
 
