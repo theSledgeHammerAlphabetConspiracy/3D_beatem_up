@@ -6,12 +6,12 @@ func _ready():
 		"move": $Move,
 		"jump": $Jump,
 		"jumpstart":$JumpStart,
-		"jumpland":$JumpLand
+		"jumpland":$JumpLand,
 #
-#		"hitstop": $Hitstop,#old stagger
-#		"hitstunGr":$HitstunGr,
-#		"hitstunA":$HitstunA,
-#		"knockdown":$Knockdown,
+		"hitstop": $Hitstop,#old stagger
+		"hitstunGr":$HitstunGr,
+		"hitstunA":$HitstunA,
+		"knockdown":$Knockdown
 #		"blowback":$Blowback,
 #		"wallbounce":$WallBounce,
 #
@@ -40,7 +40,10 @@ func _change_state(state_name):
 	#if state_name == "hitstunA" and current_state == $Jump:
 		#$HitstunA.initialize(owner.knockback_amount, owner.knockback_direction, owner.get_node("BodyPivot").position.y)
 	._change_state(state_name)
-	owner.get_node("StateNameDisplayer").set_text(state_name)
+	
+	owner.get_parent().get_node("Camera/Cstate").set_text(state_name)
+	#jsut unhide and uncomment
+	#owner.get_node("StateNameDisplayer").set_text(state_name)
 
 func _input(event):
 	"""

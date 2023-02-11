@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://src/Godette.gd" type="Script" id=1]
 [ext_resource path="res://assets/godette_pawn.png" type="Texture" id=2]
@@ -8,9 +8,102 @@
 [ext_resource path="res://statemachine/motion/on_ground/JumpLand.gd" type="Script" id=6]
 [ext_resource path="res://statemachine/motion/on_ground/idle.gd" type="Script" id=7]
 [ext_resource path="res://statemachine/player_state_machine.gd" type="Script" id=8]
+[ext_resource path="res://statemachine/combat/hitstop.gd" type="Script" id=9]
+[ext_resource path="res://statemachine/combat/HitstunGr.gd" type="Script" id=10]
+[ext_resource path="res://statemachine/combat/HitstunA.gd" type="Script" id=11]
+[ext_resource path="res://statemachine/combat/Knockdown.gd" type="Script" id=12]
+[ext_resource path="res://bioren.tscn" type="PackedScene" id=13]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.69188, 0.640016, 0.372855 )
+
+[sub_resource type="Animation" id=9]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:knockback_amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BodyPivot/Sprite3D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("StateMachine/Knockdown:get_up_roll_speed")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "hitstop"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("BodyPivot/Sprite3D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "hitstunA"
+length = 0.55
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:knockback_amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 3,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "hitstunGr"
+length = 0.55
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:knockback_amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 3,
+"values": [ 0.0 ]
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "idle"
@@ -28,6 +121,21 @@ resource_name = "jumpstart"
 length = 0.0833333
 step = 0.0166667
 
+[sub_resource type="Animation" id=11]
+resource_name = "knockdown"
+tracks/0/type = "value"
+tracks/0/path = NodePath("StateMachine/Knockdown:get_up_roll_speed")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 5, 0 ]
+}
+
 [sub_resource type="Animation" id=6]
 resource_name = "walk"
 
@@ -43,8 +151,12 @@ transform = Transform( 1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0 )
 
 [node name="Sprite3D" type="Sprite3D" parent="BodyPivot"]
 transform = Transform( 0.4, -1.11759e-08, 7.45058e-08, -1.86844e-08, 0.4, -4.47035e-08, 1.93237e-08, 5.96046e-08, 0.4, 0, 0.804995, 1.19209e-07 )
+visible = false
 alpha_cut = 2
 texture = ExtResource( 2 )
+
+[node name="bioren" parent="BodyPivot" instance=ExtResource( 13 )]
+transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0 )
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 8 )
@@ -66,21 +178,32 @@ script = ExtResource( 5 )
 script = ExtResource( 6 )
 
 [node name="Hitstop" type="Node" parent="StateMachine"]
+script = ExtResource( 9 )
 
 [node name="HitstunGr" type="Node" parent="StateMachine"]
+script = ExtResource( 10 )
 
 [node name="HitstunA" type="Node" parent="StateMachine"]
+script = ExtResource( 11 )
 
 [node name="Knockdown" type="Node" parent="StateMachine"]
+script = ExtResource( 12 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 9 )
+anims/hitstop = SubResource( 7 )
+anims/hitstunA = SubResource( 10 )
+anims/hitstunGr = SubResource( 8 )
 anims/idle = SubResource( 2 )
 anims/jump = SubResource( 3 )
 anims/jumpland = SubResource( 4 )
 anims/jumpstart = SubResource( 5 )
+anims/knockdown = SubResource( 11 )
 anims/walk = SubResource( 6 )
 
 [node name="StateNameDisplayer" type="Label3D" parent="."]
-transform = Transform( 2, 0, 0, 0, 4, 0, 0, 0, 2, 0, 1.36837, 0 )
+transform = Transform( 2, 0, 0, 0, 5, 0, 0, 0, 2, 0, 1.36837, 0 )
+visible = false
 modulate = Color( 0, 0, 0, 1 )
 text = "YOYOYOYOYOYO"
+uppercase = true

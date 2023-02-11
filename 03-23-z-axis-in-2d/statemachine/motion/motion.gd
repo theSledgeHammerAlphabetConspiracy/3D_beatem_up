@@ -9,7 +9,7 @@ func handle_input(event):
 	if event.is_action_pressed("simulate_damage"+owner.player_team):
 		#change the hitstop stun_type here
 		#this is suppose to be in the get hit state and set in the VBox
-		owner.take_damage(self, 10,Vector2(-owner.get_node("BodyPivot").get_scale().x,0),200)
+		owner.take_damage(self, 10,Vector3(-owner.get_node("BodyPivot").get_scale().x,15,0),3.1)
 	elif event.is_action_pressed("C"+owner.player_team):
 		#change the hitstop stun_type here
 		#this is suppose to be in the get hit state and set in the VBox
@@ -32,3 +32,8 @@ func update_look_direction(direction):
 		return
 	owner.get_node("BodyPivot").set_scale(Vector3(direction.x, 1,1))
 	#owner.get_node("APivot").set_scale(Vector2(direction.x, 1))
+
+
+
+
+
