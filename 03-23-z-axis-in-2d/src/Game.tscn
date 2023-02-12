@@ -36,13 +36,12 @@ shadow_bias = 0.01
 shadow_contact = 0.39
 directional_shadow_mode = 0
 
-[node name="Camera" type="Camera" parent="."]
+[node name="2 direction" type="Camera" parent="."]
 transform = Transform( 1, 7.05528e-08, -4.83093e-08, -3.69459e-08, 0.866026, 0.5, 7.71134e-08, -0.5, 0.866026, 4.75499e-06, 6.31141, 12.0035 )
 projection = 1
-current = true
 size = 10.0
 
-[node name="fps" type="Label" parent="Camera"]
+[node name="fps" type="Label" parent="2 direction"]
 modulate = Color( 0.184314, 1, 0, 1 )
 margin_right = 40.0
 margin_bottom = 14.0
@@ -50,7 +49,29 @@ rect_scale = Vector2( 5, 5 )
 text = "yoyoyoyo"
 script = ExtResource( 5 )
 
-[node name="Cstate" type="Label" parent="Camera"]
+[node name="Cstate" type="Label" parent="2 direction"]
+self_modulate = Color( 0, 0, 1, 1 )
+margin_top = 73.0
+margin_right = 60.0
+margin_bottom = 87.0
+rect_scale = Vector2( 5, 5 )
+text = "yoyoyoyo"
+
+[node name="8 direction" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.573576, 0.819152, 0, -0.819152, 0.573576, 4.76837e-06, 16.7562, 12.0337 )
+projection = 1
+current = true
+size = 15.0
+
+[node name="fps" type="Label" parent="8 direction"]
+modulate = Color( 0.184314, 1, 0, 1 )
+margin_right = 40.0
+margin_bottom = 14.0
+rect_scale = Vector2( 5, 5 )
+text = "yoyoyoyo"
+script = ExtResource( 5 )
+
+[node name="Cstate" type="Label" parent="8 direction"]
 self_modulate = Color( 0, 0, 1, 1 )
 margin_top = 73.0
 margin_right = 60.0

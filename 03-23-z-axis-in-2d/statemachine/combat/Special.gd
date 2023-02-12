@@ -12,23 +12,24 @@ export var locked_speed:float=0.0
 var chargespeed:float=0.0
 
 func enter():
+	owner._give_velocity(0, Vector2(0,0))
 	#print(owner.get_node("BodyPivot").get_scale())
 	#play move
 	#speed = 0.0
 	locked_speed = 0
 	advance = false
 	
-	owner.attack_KB_dir = Vector2(owner.get_node("BodyPivot").get_scale().x,0)
-	owner.attack_KB_amount = 2000
-	owner.attack_KB_type = 6#blowback
+	#owner.attack_KB_dir = Vector2(owner.get_node("BodyPivot").get_scale().x,0)
+	#owner.attack_KB_amount = 2000
+	#owner.attack_KB_type = 6#blowback
 	
 	#velocity = Vector2()
 	chargespeed=0.0
 	#var input_direction = get_input_direction()
-	locked_direction = Vector2(owner.get_node("BodyPivot").get_scale().x,0)
+	#locked_direction = Vector2(owner.get_node("BodyPivot").get_scale().x,0)
 	#update_look_direction(input_direction)
 	update_look_direction(locked_direction)
-	owner.get_node("AnimationPlayer").play("shovel")
+	owner.get_node("AnimationPlayer").play("special")
 
 func handle_input(event):
 	pass

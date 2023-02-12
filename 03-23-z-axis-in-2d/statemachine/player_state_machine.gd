@@ -11,14 +11,14 @@ func _ready():
 		"hitstop": $Hitstop,#old stagger
 		"hitstunGr":$HitstunGr,
 		"hitstunA":$HitstunA,
-		"knockdown":$Knockdown
+		"knockdown":$Knockdown,
 #		"blowback":$Blowback,
 #		"wallbounce":$WallBounce,
 #
 #		"string1":$String1,
 #		"string2":$String2,
 #		"string3":$String3,
-#		"special":$Special,
+		"special":$Special
 #
 #		"airattack":$AirAttack
 	}
