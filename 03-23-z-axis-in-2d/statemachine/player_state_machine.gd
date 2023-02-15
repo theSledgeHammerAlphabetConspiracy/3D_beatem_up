@@ -41,7 +41,8 @@ func _change_state(state_name):
 		#$HitstunA.initialize(owner.knockback_amount, owner.knockback_direction, owner.get_node("BodyPivot").position.y)
 	._change_state(state_name)
 	
-	owner.get_parent().get_node("Camera/Cstate").set_text(state_name)
+	get_viewport().get_camera().get_node("Cstate").set_text(state_name)
+	#owner.get_parent().get_node("Camera/Cstate").set_text(state_name)
 	#jsut unhide and uncomment
 	#owner.get_node("StateNameDisplayer").set_text(state_name)
 

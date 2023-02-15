@@ -10,6 +10,7 @@ func enter():
 	var input_direction = get_input_direction()
 	update_look_direction(input_direction)
 	owner.get_node("AnimationPlayer").play("walk")
+	owner.get_node("AnimationPlayer2D").play("walk")
 	
 func handle_input(event):
 	return .handle_input(event)
@@ -21,5 +22,5 @@ func update(delta):
 	update_look_direction(input_direction)#in motion
 	
 	speed = MAX_WALK_SPEED 
-	owner._give_velocity(speed, get_input_direction())
+	owner._give_velocity(speed, get_input_direction().normalized())
 	

@@ -3,6 +3,7 @@ extends "on_ground.gd"
 func enter():
 	owner._give_velocity(0, Vector2(0,0))
 	owner.get_node("AnimationPlayer").play("idle")
+	owner.get_node("AnimationPlayer2D").play("idle")
 	#if owner.on_ground == false:
 		
 

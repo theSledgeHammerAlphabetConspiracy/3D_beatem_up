@@ -36,7 +36,7 @@ func update_look_direction(direction):
 		return
 	
 	######good for sprites in 3D
-	#owner.get_node("BodyPivot").set_scale(Vector3(direction.x, 1,1))
+	owner.get_node("BodyPivot").set_scale(Vector3(direction.x, 1,1))
 	
 
 
